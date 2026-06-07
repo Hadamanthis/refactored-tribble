@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://hxyoyrx2x5vj"]
+
+[ext_resource type="Script" uid="uid://cmwpkvqsbdcxx" path="res://scripts/data/ingredient_data.gd" id="1_styt6"]
+[ext_resource type="Resource" uid="uid://14hpk8fof30x" path="res://data/ingredients/herb.tres" id="2_k5by2"]
+[ext_resource type="Script" uid="uid://dsc3k42kjvdd" path="res://scripts/data/recipe_data.gd" id="2_l1p1s"]
+
+[resource]
+script = ExtResource("2_l1p1s")
+id = "cura"
+display_name = "Poção de Cura"
+order_text = "Quero uma poção de cura!"
+required_ingredients = Array[ExtResource("1_styt6")]([ExtResource("2_k5by2")])
+effect = "cura"
+metadata/_custom_type_script = "uid://dsc3k42kjvdd"

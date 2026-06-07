@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://bktu1hxwer6tf"]
+
+[ext_resource type="Script" uid="uid://cmwpkvqsbdcxx" path="res://scripts/data/ingredient_data.gd" id="1_tj7hm"]
+[ext_resource type="Script" uid="uid://dsc3k42kjvdd" path="res://scripts/data/recipe_data.gd" id="2_146o0"]
+[ext_resource type="Resource" uid="uid://duegtii55bajf" path="res://data/ingredients/pepper.tres" id="2_m63rf"]
+
+[resource]
+script = ExtResource("2_146o0")
+id = "energia"
+display_name = "Poção de Energia"
+order_text = "Quero uma poção de energia!"
+required_ingredients = Array[ExtResource("1_tj7hm")]([ExtResource("2_m63rf")])
+effect = "energia"
+metadata/_custom_type_script = "uid://dsc3k42kjvdd"

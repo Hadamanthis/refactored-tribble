@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://ja3yxr8b3ldt"]
+
+[ext_resource type="Script" uid="uid://4dya2y7qnwnd" path="res://scene/prototype_game.gd" id="1_5n8ee"]
+[ext_resource type="Resource" uid="uid://thcv28jrsi3r" path="res://data/recipes/sleep_potion.tres" id="2_1swqs"]
+[ext_resource type="Script" uid="uid://cmwpkvqsbdcxx" path="res://scripts/data/ingredient_data.gd" id="3_shm5v"]
+[ext_resource type="Resource" uid="uid://14hpk8fof30x" path="res://data/ingredients/herb.tres" id="4_jhg4t"]
+[ext_resource type="Resource" uid="uid://bi5cgo0jytdk1" path="res://data/ingredients/lavender.tres" id="5_danjj"]
+[ext_resource type="Resource" uid="uid://duegtii55bajf" path="res://data/ingredients/pepper.tres" id="6_c30i4"]
+[ext_resource type="Script" uid="uid://rnkmi3ymnyrc" path="res://scripts/gameplay/cauldron.gd" id="7_jhg4t"]
+
+[node name="PrototypeGame" type="Control" unique_id=579780869]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5n8ee")
+current_recipe = ExtResource("2_1swqs")
+available_ingredients = Array[ExtResource("3_shm5v")]([ExtResource("4_jhg4t"), ExtResource("5_danjj"), ExtResource("6_c30i4")])
+
+[node name="MainMargin" type="MarginContainer" parent="." unique_id=2014583919]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="MainLayout" type="VBoxContainer" parent="MainMargin" unique_id=813310108]
+layout_mode = 2
+
+[node name="CustomerPanel" type="PanelContainer" parent="MainMargin/MainLayout" unique_id=1382804192]
+layout_mode = 2
+
+[node name="CustomerLayout" type="VBoxContainer" parent="MainMargin/MainLayout/CustomerPanel" unique_id=1747525368]
+layout_mode = 2
+
+[node name="CustomerTitleLabel" type="Label" parent="MainMargin/MainLayout/CustomerPanel/CustomerLayout" unique_id=1391383398]
+layout_mode = 2
+text = "Cliente"
+
+[node name="OrderLabel" type="Label" parent="MainMargin/MainLayout/CustomerPanel/CustomerLayout" unique_id=321032536]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quero uma poção de cura!"
+
+[node name="IngredientsPanel" type="PanelContainer" parent="MainMargin/MainLayout" unique_id=209613831]
+layout_mode = 2
+
+[node name="IngredientsLayout" type="VBoxContainer" parent="MainMargin/MainLayout/IngredientsPanel" unique_id=2071945167]
+layout_mode = 2
+
+[node name="IngredientsTitleLabel" type="Label" parent="MainMargin/MainLayout/IngredientsPanel/IngredientsLayout" unique_id=1953933047]
+layout_mode = 2
+text = "Ingredientes"
+
+[node name="IngredientsButtonRow" type="HBoxContainer" parent="MainMargin/MainLayout/IngredientsPanel/IngredientsLayout" unique_id=1672693525]
+layout_mode = 2
+
+[node name="HerbButton" type="Button" parent="MainMargin/MainLayout/IngredientsPanel/IngredientsLayout/IngredientsButtonRow" unique_id=110824910]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Erva Verde"
+
+[node name="LavenderButton" type="Button" parent="MainMargin/MainLayout/IngredientsPanel/IngredientsLayout/IngredientsButtonRow" unique_id=1142545160]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lavanda"
+
+[node name="PepperButton" type="Button" parent="MainMargin/MainLayout/IngredientsPanel/IngredientsLayout/IngredientsButtonRow" unique_id=1846901498]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Pimenta"
+
+[node name="CauldronPanel" type="PanelContainer" parent="MainMargin/MainLayout" unique_id=840680476]
+layout_mode = 2
+
+[node name="CauldronLayout" type="VBoxContainer" parent="MainMargin/MainLayout/CauldronPanel" unique_id=217917687]
+layout_mode = 2
+
+[node name="CauldronTitleLabel" type="Label" parent="MainMargin/MainLayout/CauldronPanel/CauldronLayout" unique_id=1008574274]
+layout_mode = 2
+text = "Caldeirão"
+
+[node name="CauldronIngredientsLabel" type="Label" parent="MainMargin/MainLayout/CauldronPanel/CauldronLayout" unique_id=134674392]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Caldeirão Vazio"
+
+[node name="ActionsPanel" type="PanelContainer" parent="MainMargin/MainLayout" unique_id=1951678298]
+layout_mode = 2
+
+[node name="ActionsRow" type="HBoxContainer" parent="MainMargin/MainLayout/ActionsPanel" unique_id=275130766]
+layout_mode = 2
+
+[node name="MixButton" type="Button" parent="MainMargin/MainLayout/ActionsPanel/ActionsRow" unique_id=549635321]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Misturar"
+
+[node name="DeliverButton" type="Button" parent="MainMargin/MainLayout/ActionsPanel/ActionsRow" unique_id=985071354]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Entregar"
+
+[node name="ClearButton" type="Button" parent="MainMargin/MainLayout/ActionsPanel/ActionsRow" unique_id=762058950]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Limpar"
+
+[node name="RestartButton" type="Button" parent="MainMargin/MainLayout/ActionsPanel/ActionsRow" unique_id=641185204]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="ResultPanel" type="PanelContainer" parent="MainMargin/MainLayout" unique_id=558385572]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="MainMargin/MainLayout/ResultPanel" unique_id=1553675631]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resultado:"
+
+[node name="Cauldron" type="Node" parent="." unique_id=212469240]
+unique_name_in_owner = true
+script = ExtResource("7_jhg4t")
+
+[connection signal="pressed" from="MainMargin/MainLayout/IngredientsPanel/IngredientsLayout/IngredientsButtonRow/HerbButton" to="." method="_on_herb_button_pressed"]
+[connection signal="pressed" from="MainMargin/MainLayout/IngredientsPanel/IngredientsLayout/IngredientsButtonRow/LavenderButton" to="." method="_on_lavender_button_pressed"]
+[connection signal="pressed" from="MainMargin/MainLayout/IngredientsPanel/IngredientsLayout/IngredientsButtonRow/PepperButton" to="." method="_on_pepper_button_pressed"]
+[connection signal="pressed" from="MainMargin/MainLayout/ActionsPanel/ActionsRow/MixButton" to="." method="_on_mix_button_pressed"]
+[connection signal="pressed" from="MainMargin/MainLayout/ActionsPanel/ActionsRow/DeliverButton" to="." method="_on_deliver_button_pressed"]
+[connection signal="pressed" from="MainMargin/MainLayout/ActionsPanel/ActionsRow/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="pressed" from="MainMargin/MainLayout/ActionsPanel/ActionsRow/RestartButton" to="." method="_on_restart_button_pressed"]

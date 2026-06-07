@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="IngredientData" format=3 uid="uid://bi5cgo0jytdk1"]
+
+[ext_resource type="Script" uid="uid://cmwpkvqsbdcxx" path="res://scripts/data/ingredient_data.gd" id="1_co6a7"]
+
+[resource]
+script = ExtResource("1_co6a7")
+id = "lavanda"
+display_name = "Lavanda"
+effects = Array[String](["sono"])
+is_available = true
+metadata/_custom_type_script = "uid://cmwpkvqsbdcxx"

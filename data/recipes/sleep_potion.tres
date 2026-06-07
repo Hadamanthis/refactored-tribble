@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://thcv28jrsi3r"]
+
+[ext_resource type="Script" uid="uid://cmwpkvqsbdcxx" path="res://scripts/data/ingredient_data.gd" id="1_m7dm4"]
+[ext_resource type="Script" uid="uid://dsc3k42kjvdd" path="res://scripts/data/recipe_data.gd" id="2_ax3ov"]
+[ext_resource type="Resource" uid="uid://bi5cgo0jytdk1" path="res://data/ingredients/lavender.tres" id="2_iwmfs"]
+
+[resource]
+script = ExtResource("2_ax3ov")
+id = "sono"
+display_name = "Poção de Sono"
+order_text = "Quero uma poção de sono!"
+required_ingredients = Array[ExtResource("1_m7dm4")]([ExtResource("2_iwmfs")])
+effect = "sono"
+metadata/_custom_type_script = "uid://dsc3k42kjvdd"

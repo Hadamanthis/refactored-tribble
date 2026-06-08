@@ -6,8 +6,12 @@
 [ext_resource type="Resource" uid="uid://14hpk8fof30x" path="res://data/ingredients/herb.tres" id="4_jhg4t"]
 [ext_resource type="Resource" uid="uid://bi5cgo0jytdk1" path="res://data/ingredients/lavender.tres" id="5_danjj"]
 [ext_resource type="Resource" uid="uid://duegtii55bajf" path="res://data/ingredients/pepper.tres" id="6_c30i4"]
+[ext_resource type="Script" uid="uid://dgr4lye1o81dt" path="res://scripts/ui/customer_view.gd" id="7_c30i4"]
 [ext_resource type="PackedScene" uid="uid://dhbrkrkuy73n1" path="res://scene/ingredient_button.tscn" id="7_danjj"]
 [ext_resource type="PackedScene" uid="uid://b2y7q7j6wjdsp" path="res://scene/cauldron.tscn" id="7_jhg4t"]
+[ext_resource type="Script" uid="uid://bw3tju0msjg4v" path="res://scripts/data/customer_data.gd" id="7_xel02"]
+[ext_resource type="Resource" uid="uid://6onm5nd6jvno" path="res://data/customers/ill_customer.tres" id="8_h4qdy"]
+[ext_resource type="Resource" uid="uid://b5jebdcxtpl68" path="res://data/customers/tired_customer.tres" id="9_t6h4s"]
 
 [node name="PrototypeGame" type="Control" unique_id=579780869]
 layout_mode = 3
@@ -17,8 +21,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5n8ee")
-current_customer = ExtResource("2_danjj")
 available_ingredients = Array[ExtResource("3_shm5v")]([ExtResource("4_jhg4t"), ExtResource("5_danjj"), ExtResource("6_c30i4")])
+available_customers = Array[ExtResource("7_xel02")]([ExtResource("2_danjj"), ExtResource("8_h4qdy"), ExtResource("9_t6h4s")])
 
 [node name="MainMargin" type="MarginContainer" parent="." unique_id=2014583919]
 layout_mode = 1
@@ -36,12 +40,15 @@ theme_override_constants/margin_bottom = 24
 layout_mode = 2
 
 [node name="CustomerPanel" type="PanelContainer" parent="MainMargin/MainLayout" unique_id=1382804192]
+unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("7_c30i4")
 
 [node name="CustomerLayout" type="VBoxContainer" parent="MainMargin/MainLayout/CustomerPanel" unique_id=1747525368]
 layout_mode = 2
 
 [node name="CustomerTitleLabel" type="Label" parent="MainMargin/MainLayout/CustomerPanel/CustomerLayout" unique_id=1391383398]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Cliente"
 

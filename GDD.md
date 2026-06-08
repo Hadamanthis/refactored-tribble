@@ -652,6 +652,54 @@ Visual 2D simples, colorido, com leitura clara.
 * botões de UI;
 * efeitos simples de brilho/fumaça.
 
+### Plano de integracao grafica
+
+Os graficos devem entrar antes do polimento final. A meta nao e fazer arte final cedo, mas criar a estrutura correta para que sprites, icones e animacoes encaixem sem reescrever os sistemas.
+
+#### Fase 1 - Placeholders visuais
+
+Usar formas simples, cores e icones temporarios para transformar a tela de formulario em uma cena de jogo:
+
+* cliente com retrato placeholder;
+* ingredientes como cards com area de icone;
+* caldeirao como foco visual central;
+* HUD separado no topo;
+* resultado como feedback curto;
+* fundo simples da loja.
+
+#### Fase 2 - Assets de gameplay
+
+Substituir placeholders por assets simples:
+
+* icones de ingredientes;
+* retratos de clientes;
+* caldeirao;
+* icones de moeda e reputacao;
+* banner de evento;
+* efeitos simples de brilho, fumaca e erro.
+
+#### Fase 3 - Polimento visual
+
+Adicionar movimento e resposta visual:
+
+* tween ao adicionar ingrediente;
+* brilho ao misturar;
+* shake ou cor negativa em erro;
+* cliente reagindo com expressao simples;
+* destaque de paciencia baixa;
+* pequenas particulas no caldeirao.
+
+### Boas praticas de arte em Godot
+
+* Dados guardam referencias visuais: `IngredientData` pode receber `icon`; `CustomerData` pode receber `portrait`.
+* Cenas visuais exibem dados, mas nao calculam regra de jogo.
+* Placeholders devem ter o mesmo espaco/layout dos assets finais para evitar refazer UI.
+* Usar `TextureRect` para imagens em UI.
+* Manter assets em pastas claras, como `assets/sprites`, `assets/icons`, `assets/ui`, `assets/audio`.
+* Usar nomes estaveis e descritivos para arquivos: `ingredient_herb.png`, `customer_hunter.png`, `ui_coin.png`.
+* Evitar arte final antes do loop com clientes, dinheiro, reputacao e paciencia funcionar.
+* Testar leitura visual em tamanho pequeno, pensando em Web/itch.io.
+
 ## 28. UI principal
 
 Elementos obrigatórios:
@@ -726,6 +774,19 @@ GameOverScreen.tscn
 VictoryScreen.tscn
 ```
 
+### Cenas visuais recomendadas
+
+```text
+CustomerView.tscn
+IngredientButton.tscn
+CauldronView.tscn
+HUD.tscn
+FeedbackToast.tscn
+EventBanner.tscn
+```
+
+Essas cenas devem ser componentes visuais. Elas recebem dados e estado, mas nao devem decidir regras centrais como receita correta, dinheiro, reputacao ou eventos.
+
 ### Scripts sugeridos
 
 ```text
@@ -743,6 +804,21 @@ reputation_manager.gd
 hud.gd
 audio_manager.gd
 ```
+
+### Campos visuais nos Resources
+
+```text
+IngredientData
+- icon: Texture2D
+
+CustomerData
+- portrait: Texture2D
+
+RandomEventData
+- icon: Texture2D
+```
+
+Esses campos devem ser adicionados quando a sprint visual comecar. Enquanto nao houver arte, podem ficar vazios ou apontar para placeholders.
 
 ## 31. Arquitetura de sinais
 

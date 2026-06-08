@@ -486,16 +486,16 @@ Definition of Done:
 
 ## Sprint 8 - Refatorar caldeirao para cena propria
 
-Status: Em andamento.
+Status: Concluida.
 
 Objetivo: tirar a responsabilidade do caldeirao da cena principal.
 
 Entregas:
 
-- Cena `Cauldron.tscn`.
-- Script `cauldron.gd`.
-- Sinais do caldeirao, como `ingredients_changed`, `potion_mixed` e `cauldron_cleared`.
-- Cena principal reagindo ao caldeirao por sinais.
+- [x] Cena `Cauldron.tscn`.
+- [x] Script `cauldron.gd`.
+- [x] Sinais do caldeirao, como `ingredients_changed`, `potion_mixed` e `cauldron_cleared`.
+- [x] Cena principal reagindo ao caldeirao por sinais.
 
 Conceitos ensinados:
 
@@ -516,15 +516,17 @@ Definition of Done:
 
 ## Sprint 9 - Ingredientes como componentes visuais
 
+Status: Concluida.
+
 Objetivo: reduzir a sensacao de formulario e transformar ingredientes em elementos de jogo.
 
 Entregas:
 
-- Cena `IngredientButton.tscn`.
-- Script `ingredient_button.gd`.
-- Cada botao recebe um `IngredientData`.
-- Ingredientes exibem nome e placeholder de icone.
-- Sinal `ingredient_selected(ingredient_data)`.
+- [x] Cena `IngredientButton.tscn`.
+- [x] Script `ingredient_button.gd`.
+- [x] Cada botao recebe um `IngredientData`.
+- [x] Ingredientes exibem nome e placeholder de icone.
+- [x] Sinal `ingredient_selected(ingredient_data)`.
 
 Conceitos ensinados:
 
@@ -545,15 +547,17 @@ Definition of Done:
 
 ## Sprint 10 - Cliente e pedido atual
 
+Status: Concluida.
+
 Objetivo: transformar a receita solta em atendimento a cliente.
 
 Entregas:
 
-- `CustomerData`.
-- Cena `Customer.tscn` ou painel visual de cliente.
-- Pedido atual vindo de uma `RecipeData`.
-- Cliente mostra nome, pedido, recompensa e paciencia base.
-- Entrega correta/errada afeta o cliente atual.
+- [x] `CustomerData`.
+- [x] Cena `Customer.tscn` ou painel visual de cliente.
+- [x] Pedido atual vindo de uma `RecipeData`.
+- [x] Cliente mostra nome, pedido, recompensa e paciencia base.
+- [x] Entrega correta/errada afeta o cliente atual.
 
 Conceitos ensinados:
 
@@ -574,14 +578,16 @@ Definition of Done:
 
 ## Sprint 11 - Fila simples de clientes
 
+Status: Concluida.
+
 Objetivo: criar continuidade de gameplay.
 
 Entregas:
 
-- Lista simples de clientes/pedidos possiveis.
-- Proximo cliente aparece apos entrega.
-- Caldeirao limpa apos atendimento.
-- Contador de clientes atendidos.
+- [x] Lista simples de clientes/pedidos possiveis.
+- [x] Proximo cliente aparece apos entrega.
+- [x] Caldeirao limpa apos atendimento.
+- [x] Contador de clientes atendidos.
 
 Conceitos ensinados:
 
@@ -600,7 +606,40 @@ Definition of Done:
 
 - O jogador consegue atender varios clientes em sequencia sem reiniciar a cena.
 
-## Sprint 12 - Dinheiro e reputacao
+## Sprint 12 - Fundacao visual e placeholders
+
+Objetivo: criar a fundacao visual do jogo antes de adicionar mais sistemas numericos.
+
+Entregas:
+
+- Pasta `assets/` com subpastas iniciais.
+- Fundo placeholder da loja.
+- Area visual do cliente com espaco para retrato.
+- Ingredientes como cards com espaco para icone.
+- Caldeirao com area visual mais forte.
+- Resultado em formato de feedback curto.
+- HUD superior reservado para dia, tempo, dinheiro e reputacao.
+
+Conceitos ensinados:
+
+- `TextureRect`.
+- Placeholders visuais.
+- Separacao entre view e regra.
+- Hierarquia visual de gameplay.
+- Preparacao de assets para Web.
+
+Boas praticas:
+
+- Placeholder deve ocupar o mesmo papel do asset final.
+- Visual nao deve calcular regra de jogo.
+- Dados podem receber campo visual depois, como `icon` e `portrait`.
+- Evitar arte final antes de validar fluxo com clientes, dinheiro e paciencia.
+
+Definition of Done:
+
+- Ao rodar o jogo, a tela parece uma loja de pocoes em prototipo visual, nao apenas um formulario.
+
+## Sprint 13 - Dinheiro e reputacao
 
 Objetivo: dar consequencia aos acertos e erros.
 
@@ -629,7 +668,7 @@ Definition of Done:
 
 - O jogador entende por que ganhou, perdeu reputacao ou perdeu a partida.
 
-## Sprint 13 - Barra de paciencia
+## Sprint 14 - Barra de paciencia
 
 Objetivo: criar pressao de tempo sem deixar o jogo injusto.
 
@@ -658,7 +697,7 @@ Definition of Done:
 
 - Ignorar um cliente por tempo suficiente causa consequencia clara.
 
-## Sprint 14 - Primeiro EventManager
+## Sprint 15 - Primeiro EventManager
 
 Objetivo: adicionar caos controlado com dois eventos simples.
 
@@ -688,7 +727,7 @@ Definition of Done:
 
 - Eventos mudam a partida de forma perceptivel e terminam sem deixar estado sujo.
 
-## Sprint 15 - Dia curto e tela de fim de dia
+## Sprint 16 - Dia curto e tela de fim de dia
 
 Objetivo: transformar atendimentos soltos em ciclo de dia.
 
@@ -718,7 +757,7 @@ Definition of Done:
 
 - Uma partida tem comeco, meio e fim de dia.
 
-## Sprint 16 - Progressao ate 7 dias
+## Sprint 17 - Progressao ate 7 dias
 
 Objetivo: implementar a estrutura de campanha curta.
 
@@ -746,7 +785,7 @@ Definition of Done:
 
 - O jogador pode vencer ou perder uma campanha curta.
 
-## Sprint 17 - Reestrutura visual da tela principal
+## Sprint 18 - Reestrutura visual da tela principal
 
 Objetivo: sair da aparencia de formulario e aproximar a tela de jogo.
 
@@ -776,7 +815,7 @@ Definition of Done:
 
 - Ao olhar a tela, ela parece uma loja de pocoes jogavel, nao um formulario de teste.
 
-## Sprint 18 - Audio e feedback sensorial
+## Sprint 19 - Audio e feedback sensorial
 
 Objetivo: adicionar resposta sensorial basica.
 
@@ -804,7 +843,7 @@ Definition of Done:
 
 - Jogar sem olhar o Output ainda comunica as principais acoes.
 
-## Sprint 19 - Menu, derrota e vitoria
+## Sprint 20 - Menu, derrota e vitoria
 
 Objetivo: fechar o ciclo de jogo publicavel.
 
@@ -834,7 +873,7 @@ Definition of Done:
 
 - O jogo pode ser jogado do menu ate vitoria/derrota sem usar o editor.
 
-## Sprint 20 - Export Web e publicacao itch.io
+## Sprint 21 - Export Web e publicacao itch.io
 
 Objetivo: gerar uma versao jogavel fora do editor.
 
@@ -875,16 +914,17 @@ Definition of Done:
 | Sprint 5 | Concluida | Feedback visual, estado de botoes e regras can_* aplicadas |
 | Sprint 6 | Concluida | Revisao tecnica concluida; regras can_* e receita em lista prepararam expansao |
 | Sprint 7 | Concluida | IngredientData, RecipeData, .tres e lookup por id integrados |
-| Sprint 8 | Em andamento | Caldeirao como cena propria |
-| Sprint 9 | A fazer | Ingredientes como componentes visuais |
-| Sprint 10 | A fazer | Cliente e pedido atual |
-| Sprint 11 | A fazer | Fila simples de clientes |
-| Sprint 12 | A fazer | Dinheiro e reputacao |
-| Sprint 13 | A fazer | Barra de paciencia |
-| Sprint 14 | A fazer | EventManager com 2 eventos |
-| Sprint 15 | A fazer | Dia curto e fim de dia |
-| Sprint 16 | A fazer | Progressao ate 7 dias |
-| Sprint 17 | A fazer | Reestrutura visual da gameplay |
-| Sprint 18 | A fazer | Audio e feedback sensorial |
-| Sprint 19 | A fazer | Menu, derrota e vitoria |
-| Sprint 20 | A fazer | Export Web e itch.io |
+| Sprint 8 | Concluida | Cauldron extraido para cena/script proprio com sinais |
+| Sprint 9 | Concluida | IngredientButton reutilizavel com IngredientData |
+| Sprint 10 | Concluida | CustomerData integrado com CustomerView e pedido por receita |
+| Sprint 11 | Concluida | Fila simples de clientes funcionando |
+| Sprint 12 | A fazer | Fundacao visual e placeholders |
+| Sprint 13 | A fazer | Dinheiro e reputacao |
+| Sprint 14 | A fazer | Barra de paciencia |
+| Sprint 15 | A fazer | EventManager com 2 eventos |
+| Sprint 16 | A fazer | Dia curto e fim de dia |
+| Sprint 17 | A fazer | Progressao ate 7 dias |
+| Sprint 18 | A fazer | Reestrutura visual da gameplay |
+| Sprint 19 | A fazer | Audio e feedback sensorial |
+| Sprint 20 | A fazer | Menu, derrota e vitoria |
+| Sprint 21 | A fazer | Export Web e itch.io |

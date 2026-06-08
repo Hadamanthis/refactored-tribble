@@ -7,16 +7,16 @@ enum FeedbackType {
 	ERROR
 }
 
-@export var current_customer: CustomerData
 @export var available_ingredients: Array[IngredientData] = []
+@export var available_customers: Array[CustomerData] = []
 
 @onready var cauldron: Cauldron = %Cauldron
+
+@onready var customer_panel: CustomerView = %CustomerPanel
 
 @onready var cauldron_ingredients_label: Label = %CauldronIngredientsLabel
 @onready var result_label: Label = %ResultLabel
 @onready var result_panel: PanelContainer = %ResultPanel
-
-@onready var order_label: Label = %OrderLabel
 
 @onready var herb_button: IngredientButton = %HerbButton
 @onready var lavender_button: IngredientButton = %LavenderButton
@@ -28,6 +28,8 @@ enum FeedbackType {
 @onready var restart_button: Button = %RestartButton
 
 var ingredient_by_id: Dictionary = {}
+var current_customer: CustomerData
+var served_customers_count: int = 0
 
 func _ready() -> void:
 	build_ingredient_lookup()
@@ -40,13 +42,13 @@ func _ready() -> void:
 	lavender_button.ingredient_selected.connect(_on_ingredient_selected)
 	pepper_button.ingredient_selected.connect(_on_ingredient_selected)
 	
-	update_order_label()
+	pick_next_customer()
 	update_cauldron_label()
 	update_buttons()
 	update_result_panel(FeedbackType.INFO)
 
 func try_add_ingredient(ingredient_id: String) -> void:
-	if cauldron.state == cauldron.State.POTION_READY:
+	if cauldron.state == Cauldron.State.POTION_READY:
 		show_result("A poção já foi misturada.", FeedbackType.WARNING)
 		return
 	
@@ -65,11 +67,11 @@ func try_add_ingredient(ingredient_id: String) -> void:
 
 func mix_potion() -> void:
 	match cauldron.state:
-		cauldron.State.EMPTY:
+		Cauldron.State.EMPTY:
 			show_result("Adicione um ingrediente primeiro.", FeedbackType.WARNING)
 			return
 			
-		cauldron.State.POTION_READY:
+		Cauldron.State.POTION_READY:
 			show_result("A poção já foi misturada.", FeedbackType.WARNING)
 			return
 	
@@ -91,28 +93,31 @@ func deliver_potion() -> void:
 		return
 	
 	match cauldron.state:
-		cauldron.State.EMPTY:
+		Cauldron.State.EMPTY:
 			show_result("Não há poção para entregar.", FeedbackType.WARNING)
 			return
 	
-		cauldron.State.RECEIVING_INGREDIENTS:
+		Cauldron.State.RECEIVING_INGREDIENTS:
 			show_result("Misture a poção antes de entregar.", FeedbackType.WARNING)
 			return
 	
-		cauldron.State.POTION_READY:
+		Cauldron.State.POTION_READY:
 			if is_correct_potion():
 				var success_msg = "%s ficou feliz! +%d moedas!" % [
 					current_customer.display_name,
 					current_customer.reward
 				]
 				show_result(success_msg, FeedbackType.SUCCESS)
+				complete_customer_service()
 			else:
 				var error_msg = "Poção errada! %s ficou irritado." % [
 					current_customer.display_name
 				]
 				show_result(error_msg, FeedbackType.ERROR)
+				cauldron.clear()
+			
+			return
 	
-	cauldron.clear()
 	update_buttons()
 
 func clear_cauldron() -> void:
@@ -129,6 +134,27 @@ func show_result(message: String, feedback_type: FeedbackType = FeedbackType.INF
 	result_label.text = message
 	update_result_panel(feedback_type)
 	print(message)
+
+func pick_next_customer(show_arrival_message := true) -> void:
+	if available_customers.is_empty():
+		current_customer = null
+		customer_panel.set_customer(null)
+		show_result("Nenhum cliente disponível.", FeedbackType.WARNING)
+		update_buttons()
+		return
+	
+	current_customer = available_customers.pick_random()
+	
+	if show_arrival_message:
+		show_result("%s chegou à loja" % current_customer.display_name, FeedbackType.INFO)
+	
+	update_customer_view()
+	update_buttons()
+
+func complete_customer_service() -> void:
+	served_customers_count += 1
+	cauldron.clear()
+	pick_next_customer(false)
 
 func update_cauldron_label() -> void:
 	var ingredient_ids := cauldron.get_ingredient_ids()
@@ -167,29 +193,16 @@ func update_buttons() -> void:
 	pepper_button.disabled = not can_add
 	
 	mix_button.disabled = not cauldron.can_mix()
-	deliver_button.disabled = cauldron.state != Cauldron.State.POTION_READY
+	deliver_button.disabled = not can_deliver_potion()
 	clear_button.disabled = not cauldron.can_clear()
 	
 	restart_button.disabled = false
 
-func update_order_label() -> void:
-	if current_customer == null:
-		order_label.text = "Nenhum cliente ainda."
-		return
-		
-	var recipe := current_customer.requested_recipe
-	
-	if recipe == null:
-		order_label.text = "%s não sabe o que pedir." % current_customer.display_name
-		return
-	
-	order_label.text = "%s: %s" % [
-		current_customer.display_name,
-		recipe.order_text
-	]
+func update_customer_view() -> void:
+	customer_panel.set_customer(current_customer)
 
 func can_deliver_potion() -> bool:
-	return cauldron.state == cauldron.State.POTION_READY
+	return cauldron.state == Cauldron.State.POTION_READY
 	
 func is_correct_potion() -> bool:
 	var current_recipe = get_current_recipe()

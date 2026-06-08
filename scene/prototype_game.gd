@@ -7,11 +7,7 @@ enum FeedbackType {
 	ERROR
 }
 
-const INGREDIENT_HERB := "erva_verde"
-const INGREDIENT_LAVENDER := "lavanda"
-const INGREDIENT_PEPPER := "pimenta"
-
-@export var current_recipe: RecipeData
+@export var current_customer: CustomerData
 @export var available_ingredients: Array[IngredientData] = []
 
 @onready var cauldron: Cauldron = %Cauldron
@@ -22,9 +18,9 @@ const INGREDIENT_PEPPER := "pimenta"
 
 @onready var order_label: Label = %OrderLabel
 
-@onready var herb_button: Button = %HerbButton
-@onready var lavender_button: Button = %LavenderButton
-@onready var pepper_button: Button = %PepperButton
+@onready var herb_button: IngredientButton = %HerbButton
+@onready var lavender_button: IngredientButton = %LavenderButton
+@onready var pepper_button: IngredientButton = %PepperButton
 
 @onready var mix_button: Button = %MixButton
 @onready var deliver_button: Button = %DeliverButton
@@ -39,6 +35,10 @@ func _ready() -> void:
 	cauldron.ingredients_changed.connect(_on_cauldron_ingredients_changed)
 	cauldron.potion_mixed.connect(_on_cauldron_potion_mixed)
 	cauldron.cauldron_cleared.connect(_on_cauldron_cleared)
+	
+	herb_button.ingredient_selected.connect(_on_ingredient_selected)
+	lavender_button.ingredient_selected.connect(_on_ingredient_selected)
+	pepper_button.ingredient_selected.connect(_on_ingredient_selected)
 	
 	update_order_label()
 	update_cauldron_label()
@@ -82,6 +82,14 @@ func mix_potion() -> void:
 	update_buttons()
 
 func deliver_potion() -> void:
+	if current_customer == null:
+		push_warning("Nenhum cliente para essa entrega de poção.")
+		return
+	
+	if current_customer.requested_recipe == null:
+		push_warning("Nenhuma receita para o cliente atual.")
+		return
+	
 	match cauldron.state:
 		cauldron.State.EMPTY:
 			show_result("Não há poção para entregar.", FeedbackType.WARNING)
@@ -93,9 +101,16 @@ func deliver_potion() -> void:
 	
 		cauldron.State.POTION_READY:
 			if is_correct_potion():
-				show_result("Poção correta! O cliente ficou feliz.", FeedbackType.SUCCESS)
+				var success_msg = "%s ficou feliz! +%d moedas!" % [
+					current_customer.display_name,
+					current_customer.reward
+				]
+				show_result(success_msg, FeedbackType.SUCCESS)
 			else:
-				show_result("Poção errada! O cliente ficou irritado.", FeedbackType.ERROR)
+				var error_msg = "Poção errada! %s ficou irritado." % [
+					current_customer.display_name
+				]
+				show_result(error_msg, FeedbackType.ERROR)
 	
 	cauldron.clear()
 	update_buttons()
@@ -158,16 +173,26 @@ func update_buttons() -> void:
 	restart_button.disabled = false
 
 func update_order_label() -> void:
-	if current_recipe == null:
-		order_label.text = "Nenhum pedido ainda."
+	if current_customer == null:
+		order_label.text = "Nenhum cliente ainda."
+		return
+		
+	var recipe := current_customer.requested_recipe
+	
+	if recipe == null:
+		order_label.text = "%s não sabe o que pedir." % current_customer.display_name
 		return
 	
-	order_label.text = current_recipe.order_text
+	order_label.text = "%s: %s" % [
+		current_customer.display_name,
+		recipe.order_text
+	]
 
 func can_deliver_potion() -> bool:
 	return cauldron.state == cauldron.State.POTION_READY
 	
 func is_correct_potion() -> bool:
+	var current_recipe = get_current_recipe()
 	if current_recipe == null:
 		push_warning("Nenhuma receita configurada.")
 		return false
@@ -186,6 +211,12 @@ func get_ingredient_display_name(ingredient_id: String) -> String:
 		return ingredient_id
 	
 	return ingredient_by_id[ingredient_id].display_name
+
+func get_current_recipe() -> RecipeData:
+	if current_customer == null:
+		return null
+	
+	return current_customer.requested_recipe
 
 func build_ingredient_lookup() -> void:
 	ingredient_by_id.clear()
@@ -215,14 +246,8 @@ func _on_cauldron_cleared() -> void:
 	update_cauldron_label()
 	update_buttons()
 
-func _on_herb_button_pressed() -> void:
-	try_add_ingredient(INGREDIENT_HERB)
-
-func _on_lavender_button_pressed() -> void:
-	try_add_ingredient(INGREDIENT_LAVENDER)
-
-func _on_pepper_button_pressed() -> void:
-	try_add_ingredient(INGREDIENT_PEPPER)
+func _on_ingredient_selected(ingredient_data: IngredientData) -> void:
+	try_add_ingredient(ingredient_data.id)
 
 func _on_clear_button_pressed() -> void:
 	clear_cauldron()

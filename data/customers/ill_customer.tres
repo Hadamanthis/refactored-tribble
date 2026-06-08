@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CustomerData" format=3 uid="uid://6onm5nd6jvno"]
+
+[ext_resource type="Script" uid="uid://bw3tju0msjg4v" path="res://scripts/data/customer_data.gd" id="1_4upxb"]
+[ext_resource type="Resource" uid="uid://hxyoyrx2x5vj" path="res://data/recipes/healing_potion.tres" id="1_g1mm3"]
+
+[resource]
+script = ExtResource("1_4upxb")
+id = "ill_customer"
+display_name = "Cliente Adoecido"
+requested_recipe = ExtResource("1_g1mm3")
+reward = 15
+metadata/_custom_type_script = "uid://bw3tju0msjg4v"

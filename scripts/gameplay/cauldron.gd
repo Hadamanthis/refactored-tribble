@@ -53,9 +53,9 @@ func can_add_ingredient() -> bool:
 func can_mix() -> bool:
 	return state == State.RECEIVING_INGREDIENTS \
 		and not ingredient_ids.is_empty()
-		
+
 func can_clear() -> bool:
 	return not ingredient_ids.is_empty()
-		
+
 func is_full() -> bool:
 	return ingredient_ids.size() >= ingredients_limit

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b2y7q7j6wjdsp"]
+
+[ext_resource type="Script" uid="uid://rnkmi3ymnyrc" path="res://scripts/gameplay/cauldron.gd" id="1_t6g0s"]
+
+[node name="Cauldron" type="Node" unique_id=1994584359]
+script = ExtResource("1_t6g0s")

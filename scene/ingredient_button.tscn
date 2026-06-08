@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dhbrkrkuy73n1"]
+
+[ext_resource type="Script" uid="uid://bpd2b6hgy6nfp" path="res://scripts/ui/ingredient_button.gd" id="1_iqn5g"]
+
+[node name="IngredientButton" type="Button" unique_id=1014746792]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_iqn5g")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

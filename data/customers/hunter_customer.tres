@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CustomerData" format=3 uid="uid://bpvip5yikcw8n"]
+
+[ext_resource type="Resource" uid="uid://thcv28jrsi3r" path="res://data/recipes/sleep_potion.tres" id="1_3qhyg"]
+[ext_resource type="Script" uid="uid://bw3tju0msjg4v" path="res://scripts/data/customer_data.gd" id="1_oabo3"]
+
+[resource]
+script = ExtResource("1_oabo3")
+id = "hunter_customer"
+display_name = "Caçador"
+requested_recipe = ExtResource("1_3qhyg")
+base_patience = 45
+reward = 10
+metadata/_custom_type_script = "uid://bw3tju0msjg4v"

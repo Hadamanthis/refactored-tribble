@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="IngredientData" format=3 uid="uid://duegtii55bajf"]
 
 [ext_resource type="Script" uid="uid://cmwpkvqsbdcxx" path="res://scripts/data/ingredient_data.gd" id="1_dmck1"]
+[ext_resource type="Texture2D" uid="uid://bgopwps2o5gcf" path="res://assets/icons/ingredient_pepper_v2.png" id="1_wn1e3"]
 
 [resource]
 script = ExtResource("1_dmck1")
@@ -8,4 +9,5 @@ id = "pimenta"
 display_name = "Pimenta"
 effects = Array[String](["energia"])
 is_available = true
+icon = ExtResource("1_wn1e3")
 metadata/_custom_type_script = "uid://cmwpkvqsbdcxx"

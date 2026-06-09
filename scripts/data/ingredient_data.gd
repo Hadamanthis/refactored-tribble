@@ -5,3 +5,4 @@ extends Resource
 @export var display_name: String
 @export var effects: Array[String] = []
 @export var is_available: bool = false
+@export var icon: Texture2D

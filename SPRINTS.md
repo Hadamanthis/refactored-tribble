@@ -608,17 +608,19 @@ Definition of Done:
 
 ## Sprint 12 - Fundacao visual e placeholders
 
+Status: Concluida.
+
 Objetivo: criar a fundacao visual do jogo antes de adicionar mais sistemas numericos.
 
 Entregas:
 
-- Pasta `assets/` com subpastas iniciais.
-- Fundo placeholder da loja.
-- Area visual do cliente com espaco para retrato.
-- Ingredientes como cards com espaco para icone.
-- Caldeirao com area visual mais forte.
-- Resultado em formato de feedback curto.
-- HUD superior reservado para dia, tempo, dinheiro e reputacao.
+- [x] Pasta `assets/` com subpastas iniciais.
+- [ ] Fundo placeholder da loja.
+- [x] Area visual do cliente com espaco para retrato.
+- [x] Ingredientes como cards com espaco para icone.
+- [ ] Caldeirao com area visual mais forte.
+- [ ] Resultado em formato de feedback curto.
+- [ ] HUD superior reservado para dia, tempo, dinheiro e reputacao.
 
 Conceitos ensinados:
 
@@ -641,15 +643,17 @@ Definition of Done:
 
 ## Sprint 13 - Dinheiro e reputacao
 
+Status: Concluida.
+
 Objetivo: dar consequencia aos acertos e erros.
 
 Entregas:
 
-- HUD com dinheiro.
-- HUD com reputacao.
-- Acerto adiciona dinheiro.
-- Erro reduz reputacao.
-- Reputacao 0 dispara derrota.
+- [x] HUD com dinheiro.
+- [x] HUD com reputacao.
+- [x] Acerto adiciona dinheiro.
+- [x] Erro reduz reputacao.
+- [x] Reputacao 0 dispara derrota com fluxo bloqueado/encerrado.
 
 Conceitos ensinados:
 
@@ -670,15 +674,17 @@ Definition of Done:
 
 ## Sprint 14 - Barra de paciencia
 
+Status: Concluida.
+
 Objetivo: criar pressao de tempo sem deixar o jogo injusto.
 
 Entregas:
 
-- Barra de paciencia no cliente.
-- Timer reduzindo paciencia.
-- Cliente vai embora ao chegar em zero.
-- Perda de reputacao por cliente perdido.
-- Proximo cliente entra automaticamente.
+- [x] Barra de paciencia no cliente.
+- [x] Timer reduzindo paciencia.
+- [x] Cliente vai embora ao chegar em zero.
+- [x] Perda de reputacao por cliente perdido.
+- [x] Proximo cliente entra automaticamente.
 
 Conceitos ensinados:
 
@@ -697,7 +703,41 @@ Definition of Done:
 
 - Ignorar um cliente por tempo suficiente causa consequencia clara.
 
-## Sprint 15 - Primeiro EventManager
+## Sprint 15 - Cliente como componente proprio
+
+Status: Em andamento.
+
+Objetivo: tirar do controlador principal a responsabilidade de estado vivo do cliente.
+
+Entregas:
+
+- Cena `Customer.tscn` ou componente `Customer`.
+- Script `customer.gd`.
+- Cliente recebe `CustomerData`.
+- Cliente controla paciencia atual.
+- Cliente emite sinal quando paciencia acaba.
+- `CustomerView` exibe o estado visual do cliente.
+- `GameController` apenas escolhe cliente, resolve entrega e reage aos sinais.
+
+Conceitos ensinados:
+
+- Separacao entre dado (`CustomerData`), estado runtime (`Customer`) e visual (`CustomerView`).
+- Sinais de entidade para controlador.
+- Encapsulamento de timer/paciencia.
+- Refatoracao para reduzir responsabilidade do controller.
+
+Boas praticas:
+
+- Resource nao deve guardar estado vivo de partida.
+- View nao deve decidir regra de gameplay.
+- Controller nao deve atualizar paciencia todo frame se o cliente pode cuidar disso.
+- Entidade de gameplay deve expor sinais claros, como `patience_depleted`.
+
+Definition of Done:
+
+- O cliente atual controla sua propria paciencia e avisa o `GameController` quando vai embora.
+
+## Sprint 16 - Primeiro EventManager
 
 Objetivo: adicionar caos controlado com dois eventos simples.
 
@@ -727,7 +767,7 @@ Definition of Done:
 
 - Eventos mudam a partida de forma perceptivel e terminam sem deixar estado sujo.
 
-## Sprint 16 - Dia curto e tela de fim de dia
+## Sprint 17 - Dia curto e tela de fim de dia
 
 Objetivo: transformar atendimentos soltos em ciclo de dia.
 
@@ -757,7 +797,7 @@ Definition of Done:
 
 - Uma partida tem comeco, meio e fim de dia.
 
-## Sprint 17 - Progressao ate 7 dias
+## Sprint 18 - Progressao ate 7 dias
 
 Objetivo: implementar a estrutura de campanha curta.
 
@@ -785,7 +825,7 @@ Definition of Done:
 
 - O jogador pode vencer ou perder uma campanha curta.
 
-## Sprint 18 - Reestrutura visual da tela principal
+## Sprint 19 - Reestrutura visual da tela principal
 
 Objetivo: sair da aparencia de formulario e aproximar a tela de jogo.
 
@@ -815,7 +855,7 @@ Definition of Done:
 
 - Ao olhar a tela, ela parece uma loja de pocoes jogavel, nao um formulario de teste.
 
-## Sprint 19 - Audio e feedback sensorial
+## Sprint 20 - Audio e feedback sensorial
 
 Objetivo: adicionar resposta sensorial basica.
 
@@ -843,7 +883,7 @@ Definition of Done:
 
 - Jogar sem olhar o Output ainda comunica as principais acoes.
 
-## Sprint 20 - Menu, derrota e vitoria
+## Sprint 21 - Menu, derrota e vitoria
 
 Objetivo: fechar o ciclo de jogo publicavel.
 
@@ -873,7 +913,7 @@ Definition of Done:
 
 - O jogo pode ser jogado do menu ate vitoria/derrota sem usar o editor.
 
-## Sprint 21 - Export Web e publicacao itch.io
+## Sprint 22 - Export Web e publicacao itch.io
 
 Objetivo: gerar uma versao jogavel fora do editor.
 
@@ -918,13 +958,14 @@ Definition of Done:
 | Sprint 9 | Concluida | IngredientButton reutilizavel com IngredientData |
 | Sprint 10 | Concluida | CustomerData integrado com CustomerView e pedido por receita |
 | Sprint 11 | Concluida | Fila simples de clientes funcionando |
-| Sprint 12 | A fazer | Fundacao visual e placeholders |
-| Sprint 13 | A fazer | Dinheiro e reputacao |
-| Sprint 14 | A fazer | Barra de paciencia |
-| Sprint 15 | A fazer | EventManager com 2 eventos |
-| Sprint 16 | A fazer | Dia curto e fim de dia |
-| Sprint 17 | A fazer | Progressao ate 7 dias |
-| Sprint 18 | A fazer | Reestrutura visual da gameplay |
-| Sprint 19 | A fazer | Audio e feedback sensorial |
-| Sprint 20 | A fazer | Menu, derrota e vitoria |
-| Sprint 21 | A fazer | Export Web e itch.io |
+| Sprint 12 | Concluida | Base visual iniciada com CustomerView e IngredientButton com slots de imagem |
+| Sprint 13 | Concluida | Dinheiro, reputacao, reinicio e derrota por reputacao implementados |
+| Sprint 14 | Concluida | Barra de paciencia e perda por abandono implementadas |
+| Sprint 15 | Em andamento | Cliente como componente proprio |
+| Sprint 16 | A fazer | EventManager com 2 eventos |
+| Sprint 17 | A fazer | Dia curto e fim de dia |
+| Sprint 18 | A fazer | Progressao ate 7 dias |
+| Sprint 19 | A fazer | Reestrutura visual da gameplay |
+| Sprint 20 | A fazer | Audio e feedback sensorial |
+| Sprint 21 | A fazer | Menu, derrota e vitoria |
+| Sprint 22 | A fazer | Export Web e itch.io |

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="IngredientData" format=3 uid="uid://14hpk8fof30x"]
 
 [ext_resource type="Script" uid="uid://cmwpkvqsbdcxx" path="res://scripts/data/ingredient_data.gd" id="1_q63ng"]
+[ext_resource type="Texture2D" uid="uid://becq1ij3v1v1y" path="res://assets/icons/ingredient_herb_v1.png" id="1_sc6re"]
 
 [resource]
 script = ExtResource("1_q63ng")
@@ -8,4 +9,5 @@ id = "erva_verde"
 display_name = "Erva Verde"
 effects = Array[String](["cura"])
 is_available = true
+icon = ExtResource("1_sc6re")
 metadata/_custom_type_script = "uid://cmwpkvqsbdcxx"

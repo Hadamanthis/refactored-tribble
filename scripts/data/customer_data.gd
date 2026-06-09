@@ -6,3 +6,4 @@ extends Resource
 @export var requested_recipe: RecipeData
 @export var base_patience: int = 30
 @export var reward: int = 5
+@export var portrait: Texture2D

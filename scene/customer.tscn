@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://csac4ogfdifox"]
+
+[ext_resource type="Script" uid="uid://chuk4n8ondf5b" path="res://scripts/gameplay/customer.gd" id="1_vqdmq"]
+
+[node name="Customer" type="Node" unique_id=1105475501]
+script = ExtResource("1_vqdmq")
